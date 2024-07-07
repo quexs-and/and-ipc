@@ -2,6 +2,8 @@
 
 **and-ip** 一个灵活且强大的Android 应用内多进程间通信解决方案。
 
+[![](https://jitpack.io/v/quexs-and/and-ipc.svg)](https://jitpack.io/#quexs-and/and-ipc)
+
 ## 👏 特性 
 
 - 支持 **跨进程发送信息**;
