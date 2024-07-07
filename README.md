@@ -8,6 +8,8 @@
 - 支持 **跨进程发送信息并接收消息回调**;
 
 ## 👨‍💻‍ 依赖方式
+
+### Gradle(Project Setting)
 ```groovy
 //Add it in your root build.gradle at the end of repositories
 dependencyResolutionManagement {
@@ -17,6 +19,8 @@ dependencyResolutionManagement {
 			maven { url 'https://jitpack.io' }
 		}
 	}
+
+###  Gradle (Module app)
 ```groovy
 //Add the dependency
 dependencies {
