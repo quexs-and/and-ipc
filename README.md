@@ -19,6 +19,7 @@ dependencyResolutionManagement {
 			maven { url 'https://jitpack.io' }
 		}
 	}
+```
 
 ###  Gradle (Module app)
 ```groovy
