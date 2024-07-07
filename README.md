@@ -37,6 +37,7 @@ dependencies {
 
 #### 使用进程名作为IPC服务消息接收的标签（默认）
 ```java
+//在activity的onCreate()中创建
 andIPC = new AndIPC(this, new AndIPCCallback.Stub() {
             @Override
             public void receiveMessages(String sourceKey, String message, boolean isNeedCallback) throws RemoteException {
@@ -50,6 +51,9 @@ andIPC = new AndIPC(this, new AndIPCCallback.Stub() {
         });
 //绑定服务
 andIPC.bindIPCService();
+
+//注意在onDestroy()解绑service
+ andIPC.unbindIPCService();
 ```
 #### 为Activity或者service单独绑定消息接收的标签
 ```java
@@ -66,6 +70,8 @@ andIPC.bindIPCService();
         });
 //绑定服务
 andIPC.bindIPCService();
+//注意在onDestroy()解绑service
+ andIPC.unbindIPCService();
 ```
 
 ### 发送消息
