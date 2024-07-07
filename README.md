@@ -52,7 +52,7 @@ andIPC = new AndIPC(this, new AndIPCCallback.Stub() {
 //绑定服务
 andIPC.bindIPCService();
 
-//注意应在onDestroy()解绑service
+//注：应在onDestroy()解绑service
 andIPC.unbindIPCService();
 ```
 #### 为Activity或者service单独绑定消息接收的标签
@@ -71,7 +71,8 @@ andIPC.unbindIPCService();
         });
 //绑定服务
 andIPC.bindIPCService();
-//注意应在onDestroy()解绑service
+
+//注：应在onDestroy()解绑service
 andIPC.unbindIPCService();
 ```
 
