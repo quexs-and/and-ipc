@@ -1,6 +1,6 @@
 # and-ipc
 
-**and-ipc** 一个灵活且强大的 Android 应用内多进程间通信解决方案。
+**and-ipc** 一个使用AIDL实现的Android 应用内多进程间通信解决方案。
 
 [![](https://jitpack.io/v/quexs-and/and-ipc.svg)](https://jitpack.io/#quexs-and/and-ipc)
 
