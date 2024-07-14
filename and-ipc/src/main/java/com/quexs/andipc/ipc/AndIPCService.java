@@ -28,8 +28,10 @@ public class AndIPCService extends Service {
     }
 
     private final AndIPCInterface.Stub stub = new AndIPCInterface.Stub() {
+
+
         @Override
-        public void reginsterCallback(String sourceTag, AndIPCCallback callback) throws RemoteException {
+        public void registerCallback(String sourceTag, AndIPCCallback callback) throws RemoteException {
             callbackMap.put(sourceTag, callback);
         }
 
@@ -42,7 +44,7 @@ public class AndIPCService extends Service {
         }
 
         @Override
-        public void unreginsterCallback(String targetTag) throws RemoteException {
+        public void unregisterCallback(String targetTag) throws RemoteException {
             callbackMap.remove(targetTag);
         }
     };

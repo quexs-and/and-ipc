@@ -56,7 +56,7 @@ public class AndIPC {
                 andPICInterface = AndIPCInterface.Stub.asInterface(service);
                 if(andIPCCallback != null){
                     try {
-                        andPICInterface.reginsterCallback(ownTag, andIPCCallback);
+                        andPICInterface.registerCallback(ownTag, andIPCCallback);
                     } catch (RemoteException e) {
                         Log.e("IPC","", e);
                     }
@@ -66,7 +66,7 @@ public class AndIPC {
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 try {
-                    andPICInterface.unreginsterCallback(ownTag);
+                    andPICInterface.unregisterCallback(ownTag);
                 } catch (RemoteException e) {
                     Log.e("IPC","", e);
                 }
@@ -79,8 +79,8 @@ public class AndIPC {
 
     /**
      * 发送消息
-     * @param targetTag
-     * @param message
+     * @param targetTag 目标回调标签
+     * @param message 消息体
      */
     public void sendMessage(String targetTag, String message){
         if(andPICInterface == null) return;
@@ -93,7 +93,7 @@ public class AndIPC {
 
     /**
      * 发送消息 并 监听回调信息
-     * @param targetTag
+     * @param targetTag 目标消息回调标签
      * @param onceTag 一次一标签
      * @param message 消息
      * @param onceIpcCallbackListener 消息回调监听
@@ -101,8 +101,35 @@ public class AndIPC {
     public void sendMessage(String targetTag, String onceTag, String message, OnceIpcCallbackListener onceIpcCallbackListener){
         if(andPICInterface == null) return;
         try {
-            andPICInterface.reginsterCallback(targetTag, new OnceIPCCallback(onceTag, andPICInterface, onceIpcCallbackListener));
+            andPICInterface.registerCallback(targetTag, new OnceIPCCallback(onceTag, andPICInterface, onceIpcCallbackListener));
             andPICInterface.sendMessage(targetTag, onceTag, message, true);
+        } catch (RemoteException e) {
+            Log.e("IPC","", e);
+        }
+    }
+
+    /**
+     * 添加回调监听
+     * @param callbackTag 回调标签
+     * @param callback 回调监听器
+     */
+    public void addCallback(String callbackTag,  AndIPCCallback.Stub callback){
+        if(andPICInterface == null) return;
+        try {
+            andPICInterface.registerCallback(callbackTag,callback);
+        } catch (RemoteException e) {
+            Log.e("IPC","", e);
+        }
+    }
+
+    /**
+     * 移除回调监听
+     * @param callbackTag 回调标签
+     */
+    public void removeCallback(String callbackTag){
+        if(andPICInterface == null) return;
+        try {
+            andPICInterface.unregisterCallback(callbackTag);
         } catch (RemoteException e) {
             Log.e("IPC","", e);
         }

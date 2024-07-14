@@ -22,6 +22,6 @@ public class OnceIPCCallback extends AndIPCCallback.Stub{
         if(onceIpcCallbackListener != null){
             onceIpcCallbackListener.receiveMessages(sourceTag, message, isNeedCallback);
         }
-        this.andIPCInterface.unreginsterCallback(onceTag);
+        this.andIPCInterface.unregisterCallback(onceTag);
     }
 }
