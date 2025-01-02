@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerIPCService(){
+        //默认当前进程名为消息接收标签
         andIPC = new AndIPC(this, new AndIPCCallback.Stub() {
             @Override
             public void receiveMessages(String sourceKey, String message, boolean isNeedCallback) throws RemoteException {
@@ -40,21 +41,21 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+//        自定义消息接收标签
+//        andIPC = new AndIPC(this, "ownTag（自定义消息接收的标签）", new AndIPCCallback.Stub() {
+//            @Override
+//            public void receiveMessages(String sourceKey, String message, boolean isNeedCallback) throws RemoteException {
+//                //接收消息
+//                //TODO 此处处理消息
+//                if(isNeedCallback){
+//                    //需要回调
+//                    andIPC.sendMessage(sourceKey, "message(回调的消息体)");
+//                }
+//            }
+//        });
         //绑定服务
         andIPC.bindIPCService();
-        andIPC = new AndIPC(this, "ownTag（自定义消息接收的标签）", new AndIPCCallback.Stub() {
-            @Override
-            public void receiveMessages(String sourceKey, String message, boolean isNeedCallback) throws RemoteException {
-                //接收消息
-                //TODO 此处处理消息
-                if(isNeedCallback){
-                    //需要回调
-                    andIPC.sendMessage(sourceKey, "message(回调的消息体)");
-                }
-            }
-        });
-        //绑定服务
-        andIPC.bindIPCService();
+
     }
 
     private void sendMessage(){
